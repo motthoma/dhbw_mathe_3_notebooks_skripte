@@ -40,8 +40,8 @@ uv sync --locked
 ```
 
 This downloads Python 3.12 if needed, creates the local `.venv` environment,
-and installs the project and its dependencies, including NumPy, SciPy,
-Matplotlib, and ipykernel. An existing `.venv` is synchronized instead.
+and installs the declared dependencies: NumPy, SciPy, Matplotlib, and
+ipykernel. An existing `.venv` is synchronized instead.
 The first setup requires internet access. `--locked` keeps the versions in
 `uv.lock` and reports an error if the lockfile is out of date.
 
@@ -81,3 +81,18 @@ VS Code with the Python and Jupyter extensions).
 
 After pulling dependency changes, run `uv sync --locked` again. See the
 [uv project guide](https://docs.astral.sh/uv/guides/projects/) for more details.
+
+## Alternative: Set up a Conda environment
+
+If you prefer Conda, create an environment with Python 3.12 and the same
+packages declared for the uv environment:
+
+```sh
+conda create --name dhbw-mathe-3 python=3.12 ipykernel matplotlib numpy scipy
+conda activate dhbw-mathe-3
+```
+
+Run scripts with `python scripts/explicit_euler.py`. In VS Code, select the
+`dhbw-mathe-3` environment as the notebook kernel. Conda resolves package
+versions independently; for reproducible locked versions, use the uv setup
+above.
