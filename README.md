@@ -40,7 +40,7 @@ uv sync --locked
 ```
 
 This downloads Python 3.12 if needed, creates the local `.venv` environment,
-and installs the declared dependencies: NumPy, SciPy, Matplotlib, and
+and installs the declared dependencies: NumPy, SciPy, Matplotlib, PyX, and
 ipykernel. An existing `.venv` is synchronized instead.
 The first setup requires internet access. `--locked` keeps the versions in
 `uv.lock` and reports an error if the lockfile is out of date.
@@ -51,7 +51,7 @@ Check Python and the installed dependencies:
 
 ```sh
 uv run --locked python --version
-uv run --locked python -c "import numpy, scipy, matplotlib, ipykernel; print('Environment ready')"
+uv run --locked python -c "import numpy, scipy, matplotlib, pyx, ipykernel; print('Environment ready')"
 ```
 
 Run a script from the repository root:
@@ -88,8 +88,9 @@ If you prefer Conda, create an environment with Python 3.12 and the same
 packages declared for the uv environment:
 
 ```sh
-conda create --name dhbw-mathe-3 python=3.12 ipykernel matplotlib numpy scipy
+conda create --name dhbw-mathe-3 python=3.12 ipykernel matplotlib numpy scipy pip
 conda activate dhbw-mathe-3
+python -m pip install pyx
 ```
 
 Run scripts with `python scripts/explicit_euler.py`. In VS Code, select the
